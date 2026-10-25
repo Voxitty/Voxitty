@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Voxitty - My Website</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #121214;
+            color: #ffffff;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1200px;
+            width: 100%;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        @media (max-width: 900px) {
+            .container {
+                grid-template-columns: 1fr;
+                gap: 3rem;
+                text-align: center;
+            }
+        }
+
+        /* Left Column: Profile & Socials */
+        .profile-section {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+        }
+
+        @media (max-width: 900px) {
+            .profile-section {
+                align-items: center;
+            }
+        }
+
+        .pfp-container {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            overflow: hidden;
+            margin-bottom: 2rem;
+            border: 4px solid #27272a;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+            background-color: #1e1e24;
+        }
+
+        .pfp-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .title-group h1 {
+            font-size: 2.75rem;
+            font-weight: 700;
+            line-height: 1.1;
+            margin-bottom: 0.5rem;
+            letter-spacing: -0.025em;
+        }
+
+        .title-group h1 span {
+            display: block;
+            font-size: 1.5rem;
+            font-weight: 400;
+            color: #a1a1aa;
+            margin-top: 0.25rem;
+        }
+
+        .subtitle {
+            font-size: 1.2rem;
+            color: #a1a1aa;
+            margin-bottom: 2rem;
+            font-weight: 500;
+        }
+
+        /* Social Icons & Contact */
+        .social-contact-wrapper {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .contact-row {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .contact-btn {
+            background-color: #27272a;
+            color: #fff;
+            padding: 0.75rem 1.5rem;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: background 0.2s, transform 0.2s;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .contact-btn:hover {
+            background-color: #3f3f46;
+            transform: translateY(-2px);
+        }
+
+        .social-icons {
+            display: flex;
+            gap: 0.75rem;
+            align-items: center;
+        }
+
+        .social-icons a {
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #18181b;
+            border-radius: 8px;
+            border: 1px solid #27272a;
+            transition: border-color 0.2s, transform 0.2s;
+        }
+
+        .social-icons a:hover {
+            border-color: #71717a;
+            transform: translateY(-2px);
+        }
+
+        .social-icons img {
+            width: 22px;
+            height: 22px;
+            object-fit: contain;
+        }
+
+        /* Navigation Links (Setup, Games) */
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            margin-top: 1.5rem;
+        }
+
+        .nav-links button {
+            background: none;
+            border: none;
+            color: #a1a1aa;
+            text-decoration: none;
+            font-size: 0.95rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: color 0.2s;
+            padding: 0;
+            font-family: 'Inter', sans-serif;
+        }
+
+        .nav-links button:hover,
+        .nav-links button.active {
+            color: #fff;
+        }
+
+        /* Right Column: Cards Container */
+        .card-container {
+            position: relative;
+            width: 100%;
+        }
+
+        .info-card {
+            background-color: #18181b;
+            border: 1px solid #27272a;
+            padding: 2.5rem;
+            border-radius: 16px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+            display: none;
+            animation: fadeIn 0.3s ease-in-out forwards;
+            max-height: 520px;
+            overflow-y: auto;
+        }
+
+        .info-card.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(6px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .info-card h2 {
+            font-size: 1.85rem;
+            font-weight: 700;
+            margin-bottom: 1.25rem;
+            color: #f4f4f5;
+        }
+
+        .info-card p {
+            font-size: 1.05rem;
+            line-height: 1.7;
+            color: #d4d4d8;
+            margin-bottom: 1.25rem;
+        }
+
+        .info-card p:last-child {
+            margin-bottom: 0;
+        }
+
+        /* Custom scrollbar for specs card */
+        .info-card::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        .info-card::-webkit-scrollbar-track {
+            background: #18181b;
+            border-radius: 8px;
+        }
+
+        .info-card::-webkit-scrollbar-thumb {
+            background: #27272a;
+            border-radius: 8px;
+        }
+
+        /* Setup Specs Styling */
+        .specs-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 1.25rem;
+        }
+
+        .spec-category {
+            border-bottom: 1px solid #27272a;
+            padding-bottom: 0.85rem;
+        }
+
+        .spec-category:last-child {
+            border-bottom: none;
+            padding-bottom: 0;
+        }
+
+        .spec-category h3 {
+            font-size: 0.95rem;
+            font-weight: 600;
+            color: #71717a;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 0.4rem;
+        }
+
+        .spec-item {
+            font-size: 0.95rem;
+            color: #e4e4e7;
+            line-height: 1.5;
+            display: flex;
+            justify-content: space-between;
+            gap: 1rem;
+        }
+
+        .spec-label {
+            color: #a1a1aa;
+        }
+
+        .spec-value {
+            font-weight: 500;
+            text-align: right;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+        <!-- Left Section -->
+        <div class="profile-section">
+            <div class="pfp-container">
+                <img src="pfp.png" alt="Voxitty Profile Picture"
+                    onerror="this.src='https://placehold.co/200x200/27272a/a1a1aa?text=V'">
+            </div>
+
+            <div class="title-group">
+                <h1>Voxitty <span>(He / Him)</span></h1>
+            </div>
+
+            <p class="subtitle">Professional swede / Goofer</p>
+
+            <div class="social-contact-wrapper">
+                <div class="contact-row">
+                    <a href="mailto:voxitty@gmail.com" class="contact-btn">Contact me</a>
+
+                    <div class="social-icons">
+                        <a href="https://www.youtube.com/@Voxitty" target="_blank" title="YouTube"><img
+                                src="youtube.png" alt="YouTube"
+                                onerror="this.src='https://placehold.co/22x22/27272a/fff?text=YT'"></a>
+                        <a href="https://www.twitch.tv/voxitti" target="_blank" title="Twitch"><img src="twitch.png"
+                                alt="Twitch" onerror="this.src='https://placehold.co/22x22/27272a/fff?text=T'"></a>
+                        <a href="https://www.tiktok.com/@voxitty" target="_blank" title="TikTok"><img src="tiktok.png"
+                                alt="TikTok" onerror="this.src='https://placehold.co/22x22/27272a/fff?text=T'"></a>
+                        <a href="https://x.com/Voxitti" target="_blank" title="Twitter"><img src="twitter.png"
+                                alt="Twitter" onerror="this.src='https://placehold.co/22x22/27272a/fff?text=X'"></a>
+                    </div>
+                </div>
+
+                <div class="nav-links">
+                    <button class="nav-btn active" onclick="switchTab('about', this)">About</button>
+                    <button class="nav-btn" onclick="switchTab('setup', this)">Setup</button>
+                    <button class="nav-btn" onclick="switchTab('games', this)">Games</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Right Section: Interactive Cards -->
+        <div class="card-container">
+            <!-- Who am I? Card -->
+            <div id="about" class="info-card active">
+                <h2>Who am i?</h2>
+                <p>Hello! I'm a Swedish guy who likes playing video games. I also do a bit of programming, mostly
+                    focusing
+                    on game development. I’m not sure what brought you here, but you were probably just curious about
+                    why I
+                    have my own website.</p>
+                <p>Current avatar/character design: I don’t have one yet, but I need to get one drawn :)</p>
+            </div>
+
+            <!-- Setup Card -->
+            <div id="setup" class="info-card">
+                <h2>My Setup</h2>
+                <div class="specs-grid">
+                    <div class="spec-category">
+                        <h3>Operating System</h3>
+                        <div class="spec-item">
+                            <span class="spec-value" style="text-align: left; width: 100%;">Windows 11 Home
+                                64-bit</span>
+                        </div>
+                    </div>
+
+                    <div class="spec-category">
+                        <h3>Core Hardware</h3>
+                        <div class="spec-item"><span class="spec-label">CPU</span> <span class="spec-value">AMD Ryzen 5
+                                8400F</span></div>
+                        <div class="spec-item"><span class="spec-label">RAM</span> <span class="spec-value">KINGSTON
+                                DDR5 16.0
+                                GB</span></div>
+                        <div class="spec-item"><span class="spec-label">Motherboard</span> <span
+                                class="spec-value">ASUSTeK PRIME B650M-A WIFI II (AM5)</span></div>
+                    </div>
+
+                    <div class="spec-category">
+                        <h3>Graphics & Displays</h3>
+                        <div class="spec-item"><span class="spec-label">GPU</span> <span class="spec-value">NVIDIA
+                                GeForce RTX 2060 (6GB, ASUStek)</span></div>
+                        <div class="spec-item"><span class="spec-label">Monitor 1</span> <span class="spec-value">Acer
+                                S243HL (1920x1080 @ 60Hz)</span></div>
+                        <div class="spec-item"><span class="spec-label">Monitor 2</span> <span class="spec-value">DELL
+                                S2240L (1920x1080 @ 60Hz)</span></div>
+                    </div>
+
+                    <div class="spec-category">
+                        <h3>Storage</h3>
+                        <div class="spec-item"><span class="spec-label">Drive 1</span> <span class="spec-value">447GB
+                                KINGSTON SA400S37480G (SATA SSD)</span></div>
+                        <div class="spec-item"><span class="spec-label">Drive 2</span> <span class="spec-value">931GB
+                                Samsung SSD 990 EVO 1TB (NVMe SSD)</span></div>
+                    </div>
+
+                    <div class="spec-category">
+                        <h3>Peripherals & Audio</h3>
+                        <div class="spec-item"><span class="spec-label">Keyboard</span> <span class="spec-value">Wooting
+                                80HE</span></div>
+                        <div class="spec-item"><span class="spec-label">Mouse</span> <span class="spec-value">Logitech G
+                                Pro X Superlight</span></div>
+                        <div class="spec-item"><span class="spec-label">Microphone</span> <span
+                                class="spec-value">HyperX SoloCast</span></div>
+                        <div class="spec-item"><span class="spec-label">Headset</span> <span class="spec-value">HyperX
+                                Cloud Alpha (Blackout Edition)</span></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Games Card -->
+            <div id="games" class="info-card">
+                <h2>Games</h2>
+                <p>I havent made any games yet, check back later.</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function switchTab(tabId, btnElement) {
+            // Hide all cards
+            document.querySelectorAll('.info-card').forEach(card => {
+                card.classList.remove('active');
+            });
+            // Remove active class from all buttons
+            document.querySelectorAll('.nav-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            // Show selected card and activate button
+            document.getElementById(tabId).classList.add('active');
+            btnElement.classList.add('active');
+        }
+    </script>
+</body>
+
+</html>
