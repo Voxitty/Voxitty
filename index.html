@@ -43,7 +43,6 @@
             }
         }
 
-        /* Left Column: Profile & Socials */
         .profile-section {
             display: flex;
             flex-direction: column;
@@ -96,7 +95,6 @@
             font-weight: 500;
         }
 
-        /* Social Icons & Contact */
         .social-contact-wrapper {
             display: flex;
             flex-direction: column;
@@ -108,24 +106,6 @@
             align-items: center;
             gap: 1rem;
             flex-wrap: wrap;
-        }
-
-        .contact-btn {
-            background-color: #27272a;
-            color: #fff;
-            padding: 0.75rem 1.5rem;
-            border-radius: 8px;
-            text-decoration: none;
-            font-weight: 600;
-            transition: background 0.2s, transform 0.2s;
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        .contact-btn:hover {
-            background-color: #3f3f46;
-            transform: translateY(-2px);
         }
 
         .social-icons {
@@ -157,7 +137,6 @@
             object-fit: contain;
         }
 
-        /* Navigation Links (Setup, Games) */
         .nav-links {
             display: flex;
             gap: 2rem;
@@ -182,7 +161,6 @@
             color: #fff;
         }
 
-        /* Right Column: Cards Container */
         .card-container {
             position: relative;
             width: 100%;
@@ -234,7 +212,6 @@
             margin-bottom: 0;
         }
 
-        /* Custom scrollbar for specs card */
         .info-card::-webkit-scrollbar {
             width: 6px;
         }
@@ -249,7 +226,6 @@
             border-radius: 8px;
         }
 
-        /* Setup Specs Styling */
         .specs-grid {
             display: flex;
             flex-direction: column;
@@ -298,7 +274,6 @@
 <body>
 
     <div class="container">
-        <!-- Left Section -->
         <div class="profile-section">
             <div class="pfp-container">
                 <img src="pfp.png" alt="Voxitty Profile Picture"
@@ -313,14 +288,14 @@
 
             <div class="social-contact-wrapper">
                 <div class="contact-row">
-                    <a href="mailto:voxitty@gmail.com" class="contact-btn">Contact me</a>
-
                     <div class="social-icons">
                         <a href="https://www.youtube.com/@Voxitty" target="_blank" title="YouTube"><img
                                 src="youtube.png" alt="YouTube"
                                 onerror="this.src='https://placehold.co/22x22/27272a/fff?text=YT'"></a>
                         <a href="https://www.twitch.tv/voxitti" target="_blank" title="Twitch"><img src="twitch.png"
                                 alt="Twitch" onerror="this.src='https://placehold.co/22x22/27272a/fff?text=T'"></a>
+                        <a href="https://www.instagram.com/" target="_blank" title="Instagram"><img src="instagram.png"
+                                alt="Instagram" onerror="this.src='https://placehold.co/22x22/27272a/fff?text=I'"></a>
                         <a href="https://www.tiktok.com/@voxitty" target="_blank" title="TikTok"><img src="tiktok.png"
                                 alt="TikTok" onerror="this.src='https://placehold.co/22x22/27272a/fff?text=T'"></a>
                         <a href="https://x.com/Voxitti" target="_blank" title="Twitter"><img src="twitter.png"
@@ -336,9 +311,7 @@
             </div>
         </div>
 
-        <!-- Right Section: Interactive Cards -->
         <div class="card-container">
-            <!-- Who am I? Card -->
             <div id="about" class="info-card active">
                 <h2>Who am i?</h2>
                 <p>Hello! I'm a Swedish guy who likes playing video games. I also do a bit of programming, mostly
@@ -349,7 +322,6 @@
                 <p>Current avatar/character design: I don’t have one yet, but I need to get one drawn :)</p>
             </div>
 
-            <!-- Setup Card -->
             <div id="setup" class="info-card">
                 <h2>My Setup</h2>
                 <div class="specs-grid">
@@ -404,7 +376,6 @@
                 </div>
             </div>
 
-            <!-- Games Card -->
             <div id="games" class="info-card">
                 <h2>Games</h2>
                 <p>I havent released any games yet, check back later :)</p>
@@ -414,15 +385,12 @@
 
     <script>
         function switchTab(tabId, btnElement) {
-            // Hide all cards
             document.querySelectorAll('.info-card').forEach(card => {
                 card.classList.remove('active');
             });
-            // Remove active class from all buttons
             document.querySelectorAll('.nav-btn').forEach(btn => {
                 btn.classList.remove('active');
             });
-            // Show selected card and activate button
             document.getElementById(tabId).classList.add('active');
             btnElement.classList.add('active');
         }
