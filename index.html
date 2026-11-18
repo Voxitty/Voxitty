@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Voxitty - About Me</title>
+    <title>Voxitty - My Website</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
         * {
@@ -27,10 +27,10 @@
         }
 
         .container {
-            max-width: 1200px;
+            max-width: 1280px;
             width: 100%;
             display: grid;
-            grid-template-columns: 1fr 1fr;
+            grid-template-columns: 0.95fr 1.05fr;
             gap: 4rem;
             align-items: center;
         }
@@ -43,6 +43,7 @@
             }
         }
 
+        /* Left Column: Profile & Socials */
         .profile-section {
             display: flex;
             flex-direction: column;
@@ -95,6 +96,7 @@
             font-weight: 500;
         }
 
+        /* Social Icons & Contact */
         .social-contact-wrapper {
             display: flex;
             flex-direction: column;
@@ -106,6 +108,27 @@
             align-items: center;
             gap: 1rem;
             flex-wrap: wrap;
+        }
+
+        .contact-btn {
+            border: 0;
+            cursor: pointer;
+            font: inherit;
+            background-color: #27272a;
+            color: #fff;
+            padding: 0.75rem 1.5rem;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: background 0.2s, transform 0.2s;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .contact-btn:hover {
+            background-color: #3f3f46;
+            transform: translateY(-2px);
         }
 
         .social-icons {
@@ -137,6 +160,7 @@
             object-fit: contain;
         }
 
+        /* Navigation Links (Setup, Games) */
         .nav-links {
             display: flex;
             gap: 2rem;
@@ -161,6 +185,7 @@
             color: #fff;
         }
 
+        /* Right Column: Cards Container */
         .card-container {
             position: relative;
             width: 100%;
@@ -169,12 +194,12 @@
         .info-card {
             background-color: #18181b;
             border: 1px solid #27272a;
-            padding: 2.5rem;
+            padding: 2.7rem;
             border-radius: 16px;
             box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
             display: none;
             animation: fadeIn 0.3s ease-in-out forwards;
-            max-height: 520px;
+            max-height: 560px;
             overflow-y: auto;
         }
 
@@ -212,6 +237,7 @@
             margin-bottom: 0;
         }
 
+        /* Custom scrollbar for specs card */
         .info-card::-webkit-scrollbar {
             width: 6px;
         }
@@ -226,6 +252,7 @@
             border-radius: 8px;
         }
 
+        /* Setup Specs Styling */
         .specs-grid {
             display: flex;
             flex-direction: column;
@@ -268,12 +295,83 @@
             font-weight: 500;
             text-align: right;
         }
+
+        /* Project subcategories and resource pack cards */
+        .project-subnav {
+            display: flex;
+            gap: 1.25rem;
+            flex-wrap: wrap;
+            margin: -0.25rem 0 1.5rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid #27272a;
+        }
+
+        .project-subnav button {
+            background: none;
+            border: none;
+            color: #a1a1aa;
+            font: 500 0.95rem 'Inter', sans-serif;
+            cursor: pointer;
+            padding: 0.25rem 0;
+            transition: color 0.2s;
+        }
+
+        .project-subnav button:hover,
+        .project-subnav button.active {
+            color: #fff;
+        }
+
+        .project-panel { display: none; }
+        .project-panel.active { display: block; }
+
+        .resource-pack-list {
+            display: grid;
+            gap: 1rem;
+        }
+
+        #projects.info-card {
+            padding: 2.2rem;
+        }
+
+        .resource-pack {
+            background: #202024;
+            border: 1px solid #303036;
+            border-radius: 12px;
+            padding: 1.25rem;
+        }
+
+        .resource-pack h3 {
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+            color: #f4f4f5;
+        }
+
+        .resource-pack p {
+            color: #d4d4d8;
+            font-size: 0.95rem;
+            line-height: 1.6;
+            margin-bottom: 1rem;
+            text-wrap: pretty;
+        }
+
+        .download-link {
+            display: inline-flex;
+            color: #fff;
+            background: #34343b;
+            border-radius: 7px;
+            padding: 0.6rem 0.9rem;
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 600;
+        }
+        .download-link:hover { background: #484852; }
     </style>
 </head>
 
 <body>
 
     <div class="container">
+        <!-- Left Section -->
         <div class="profile-section">
             <div class="pfp-container">
                 <img src="pfp.png" alt="Voxitty Profile Picture"
@@ -288,14 +386,14 @@
 
             <div class="social-contact-wrapper">
                 <div class="contact-row">
+                    <a class="contact-btn" href="https://discord.com/users/1062792908513738812" target="_blank" rel="noopener noreferrer" title="Open Discord profile">Discord: @voxitty</a>
+
                     <div class="social-icons">
                         <a href="https://www.youtube.com/@Voxitty" target="_blank" title="YouTube"><img
                                 src="youtube.png" alt="YouTube"
                                 onerror="this.src='https://placehold.co/22x22/27272a/fff?text=YT'"></a>
                         <a href="https://www.twitch.tv/voxitti" target="_blank" title="Twitch"><img src="twitch.png"
                                 alt="Twitch" onerror="this.src='https://placehold.co/22x22/27272a/fff?text=T'"></a>
-                        <a href="https://https://www.instagram.com/voxitty/" target="_blank" title="Instagram"><img src="instagram.png"
-                                alt="Instagram" onerror="this.src='https://placehold.co/22x22/27272a/fff?text=I'"></a>
                         <a href="https://www.tiktok.com/@voxitty" target="_blank" title="TikTok"><img src="tiktok.png"
                                 alt="TikTok" onerror="this.src='https://placehold.co/22x22/27272a/fff?text=T'"></a>
                         <a href="https://x.com/Voxitti" target="_blank" title="Twitter"><img src="twitter.png"
@@ -306,22 +404,23 @@
                 <div class="nav-links">
                     <button class="nav-btn active" onclick="switchTab('about', this)">About</button>
                     <button class="nav-btn" onclick="switchTab('setup', this)">Setup</button>
-                    <button class="nav-btn" onclick="switchTab('games', this)">Games</button>
+                    <button class="nav-btn" onclick="switchTab('projects', this)">Projects</button>
                 </div>
             </div>
         </div>
 
+        <!-- Right Section: Interactive Cards -->
         <div class="card-container">
+            <!-- Who am I? Card -->
             <div id="about" class="info-card active">
                 <h2>Who am i?</h2>
-                <p>Hello! I'm a Swedish guy who likes playing video games. I also do a bit of programming, mostly
-                    focusing
-                    on game development. I’m not sure what brought you here, but you were probably just curious about
-                    why I
-                    have my own website.</p>
+                <p>Hello! I'm a Swedish guy who likes playing video games. I'm also interested in construction, mostly
+                    focusing on building things and working on different projects. I’m not sure what brought you here,
+                    but you were probably just curious about why I have my own website.</p>
                 <p>Current avatar/character design: I don’t have one yet, but I need to get one drawn :)</p>
             </div>
 
+            <!-- Setup Card -->
             <div id="setup" class="info-card">
                 <h2>My Setup</h2>
                 <div class="specs-grid">
@@ -376,23 +475,60 @@
                 </div>
             </div>
 
-            <div id="games" class="info-card">
-                <h2>Games</h2>
-                <p>I havent released any games yet, check back later :)</p>
+            <!-- Projects Card -->
+            <div id="projects" class="info-card">
+                <h2>Projects</h2>
+                <div class="project-subnav" role="tablist" aria-label="Project categories">
+                    <button class="project-subnav-btn active" onclick="switchProjectCategory('games-projects', this)" role="tab" aria-selected="true">Games</button>
+                    <button class="project-subnav-btn" onclick="switchProjectCategory('resource-packs', this)" role="tab" aria-selected="false">Resource Packs</button>
+                </div>
+
+                <div id="games-projects" class="project-panel active" role="tabpanel">
+                    <p>I havent made any games yet, check back later.</p>
+                </div>
+
+                <div id="resource-packs" class="project-panel" role="tabpanel">
+                    <div class="resource-pack-list">
+                        <article class="resource-pack">
+                            <h3>Voltage</h3>
+                            <p>Original Voltage version, before the colour change. Remade for Minecraft 26.3. AI assistance was used, but no generative AI.</p>
+                            <a class="download-link" href="Voltage.zip" download>Download Voltage</a>
+                        </article>
+                        <article class="resource-pack">
+                            <h3>Thunder</h3>
+                            <p>The updated Thunder version, remade for Minecraft 26.3. AI assistance was used, but no generative AI.</p>
+                            <a class="download-link" href="Thunder.zip" download>Download Thunder</a>
+                        </article>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
 
     <script>
         function switchTab(tabId, btnElement) {
+            // Hide all cards
             document.querySelectorAll('.info-card').forEach(card => {
                 card.classList.remove('active');
             });
+            // Remove active class from all buttons
             document.querySelectorAll('.nav-btn').forEach(btn => {
                 btn.classList.remove('active');
             });
+            // Show selected card and activate button
             document.getElementById(tabId).classList.add('active');
             btnElement.classList.add('active');
+        }
+
+        function switchProjectCategory(panelId, btnElement) {
+            document.querySelectorAll('.project-panel').forEach(panel => panel.classList.remove('active'));
+            document.querySelectorAll('.project-subnav-btn').forEach(btn => {
+                btn.classList.remove('active');
+                btn.setAttribute('aria-selected', 'false');
+            });
+            document.getElementById(panelId).classList.add('active');
+            btnElement.classList.add('active');
+            btnElement.setAttribute('aria-selected', 'true');
         }
     </script>
 </body>
